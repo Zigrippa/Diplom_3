@@ -19,6 +19,14 @@ public class RegistrationPage {
     private final By passwordField = By.xpath("/html/body/div/div/main/div/form/fieldset[3]/div/div/input");
     private final By registrationButton = By.xpath("/html/body/div/div/main/div/form/button");
 
+    private final By userAlreadyExistsError = By.xpath("/html/body/div/div/main/div/p");
+    private final By incorrectPasswordError = By.xpath("/html/body/div/div/main/div/form/fieldset[3]/div/p");
+
+
+
+
+    //
+
 
     //методы
     public RegistrationPage inputName(String name) {
@@ -36,9 +44,18 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage clickRegistrationButton() {
+    public LoginPage clickRegistrationButton() {
         driver.findElement(registrationButton).click();
+        return new LoginPage(driver);
+    }
+
+    public RegistrationPage clickEmailField() {
+        driver.findElement(emailField).click();
         return this;
+    }
+
+    public boolean isIncorrectPasswordError() {
+        return driver.findElement(incorrectPasswordError).isDisplayed();
     }
 
 }
