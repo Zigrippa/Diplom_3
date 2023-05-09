@@ -1,14 +1,13 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import config.Config;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import pages.RegistrationPage;
 import tools.WebDriverFactory;
@@ -28,7 +27,7 @@ public class RegistrationTest {
         user = new User().generateUser();
         userClient = new UserClient();
         RestAssured.baseURI = ApiConfig.BASE_URL;
-        driver = WebDriverFactory.get("chrome", "reg");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "reg");
     }
 
     @After

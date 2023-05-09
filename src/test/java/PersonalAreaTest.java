@@ -1,6 +1,7 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import config.Config;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
@@ -26,7 +27,7 @@ public class PersonalAreaTest {
         user = new User().generateUser();
         userClient = new UserClient();
         RestAssured.baseURI = ApiConfig.BASE_URL;
-        driver = WebDriverFactory.get("chrome", "main");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "main");
         userClient.create(user);
     }
 

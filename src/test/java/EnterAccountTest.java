@@ -1,6 +1,7 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import config.Config;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
@@ -44,7 +45,7 @@ public class EnterAccountTest {
     @Test
     @DisplayName("Проверка входа через кнопку Войти в аккаунт")
     public void enterThroughEnterToAccountButton() {
-        driver = WebDriverFactory.get("chrome", "main");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "main");
         userClient.create(user);
         boolean isCheckoutOrderButtonVisible = new MainPage(driver)
                 .clickToAccountButton()
@@ -58,7 +59,7 @@ public class EnterAccountTest {
     @Test
     @DisplayName("Проверка входа через кнопку Личный кабинет")
     public void enterThroughPersonalAreaButton() {
-        driver = WebDriverFactory.get("chrome", "main");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "main");
         userClient.create(user);
         boolean isCheckoutOrderButtonVisible = new MainPage(driver)
                 .clickPersonalAreaButtonWhileIsNotLogin()
@@ -73,7 +74,7 @@ public class EnterAccountTest {
     @Test
     @DisplayName("Проверка входа через поле Зарегистрироваться и кнопку Войти")
     public void enterThroughToRegistrationButton() {
-        driver = WebDriverFactory.get("chrome", "login");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "login");
         userClient.create(user);
         boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
                 .clickToRegistrationButton()
@@ -89,7 +90,7 @@ public class EnterAccountTest {
     @Test
     @DisplayName("Проверка входа через поле Восстановления аккаунта и кнопку Войти")
     public void enterThroughPasswordRecoverButton() {
-        driver = WebDriverFactory.get("chrome", "login");
+        driver = WebDriverFactory.get(Config.BROWSER_NAME, "login");
         userClient.create(user);
         boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
                 .clickRecoverPasswordButton()
