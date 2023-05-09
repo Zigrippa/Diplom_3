@@ -7,12 +7,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import pages.RegistrationPage;
+import pages.MainPage;
 import tools.WebDriverFactory;
 
 import static org.junit.Assert.assertTrue;
 
-public class RegistrationTest {
+public class PersonalAreaTest {
 
     private WebDriver driver;
     public UserClient userClient;
@@ -25,7 +25,8 @@ public class RegistrationTest {
         user = new User().generateUser();
         userClient = new UserClient();
         RestAssured.baseURI = ApiConfig.BASE_URL;
-        driver = WebDriverFactory.get("chrome", "reg");
+        driver = WebDriverFactory.get("chrome", "main");
+        userClient.create(user);
     }
 
     @After
@@ -40,30 +41,16 @@ public class RegistrationTest {
     }
 
     @Test
-    public void correctRegistrationTest() {
-        boolean isLoginHeaderVisible = new RegistrationPage(driver)
+    public void enterThroughPersonalAreaButtonToAccount() {
+        boolean isProfileHeaderVisible = new MainPage(driver)
+                .clickToAccountButton()
                 .inputEmail(user.getEmail())
-                .inputName(user.getName())
                 .inputPassword(user.getPassword())
-                .clickRegistrationButton()
-                .isLoginHeaderVisible();
-        assertTrue(isLoginHeaderVisible);
+                .clickEnterButton()
+                .clickPersonalAreaButtonWhileAlreadyLogin()
+                .isProfileHeaderVisible();
+        assertTrue(isProfileHeaderVisible);
     }
-
-
-    @Test
-    public void passwordLessThenSixSymbolsRegistrationTest() {
-        user.setPassword("123");
-        boolean isPasswordErrorVisible = new RegistrationPage(driver)
-                .inputEmail(user.getEmail())
-                .inputName(user.getName())
-                .inputPassword(user.getPassword())
-                .clickEmailField()
-                .isIncorrectPasswordError();
-        assertTrue(isPasswordErrorVisible);
-    }
-
-
 
 
 }

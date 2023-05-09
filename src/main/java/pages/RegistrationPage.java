@@ -23,6 +23,8 @@ public class RegistrationPage {
     private final By incorrectPasswordError = By.xpath("/html/body/div/div/main/div/form/fieldset[3]/div/p");
 
 
+    private final By enterButton = By.xpath("/html/body/div/div/main/div/div/p/a");
+
 
 
     //
@@ -52,6 +54,11 @@ public class RegistrationPage {
     public RegistrationPage clickEmailField() {
         driver.findElement(emailField).click();
         return this;
+    }
+
+    public LoginPage clickEnterButton() {
+        driver.findElement(enterButton).click();
+        return new LoginPage(driver);
     }
 
     public boolean isIncorrectPasswordError() {

@@ -20,7 +20,7 @@ public class MainPage {
 
     private final By checkoutOrderButton = By.xpath("/html/body/div/div/main/section[2]/div/button");
 
-    private final By stallarisBurgerLogo = By.xpath("/html/body/div/div/header/nav/div/a/svg");
+    private final By stellarisBurgerLogo = By.xpath("/html/body/div/div/header/nav/div/a/svg");
 
 
 
@@ -43,12 +43,11 @@ public class MainPage {
     }
 
     public MainPage clickStellarisBurgerLogo() {
-        driver.findElement(personalAreaButton).click();
+        driver.findElement(stellarisBurgerLogo).click();
         return new MainPage(driver);
     }
 
 
-    //Возможно не нужный метод или просто его переделать
     public boolean isCheckoutOrderButtonVisible() {
         return driver.findElement(checkoutOrderButton).isDisplayed();
     }

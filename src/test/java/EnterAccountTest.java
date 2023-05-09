@@ -7,11 +7,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import pages.MainPage;
-import pages.RegistrationPage;
 import tools.WebDriverFactory;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class EnterAccountTest {
@@ -45,45 +44,41 @@ public class EnterAccountTest {
     public void enterThroughEnterToAccountButton() {
         driver = WebDriverFactory.get("chrome", "main");
         userClient.create(user);
-        boolean isProfileHeaderVisible = new MainPage(driver)
+        boolean isCheckoutOrderButtonVisible = new MainPage(driver)
                 .clickToAccountButton()
                 .inputEmail(user.getEmail())
                 .inputPassword(user.getPassword())
                 .clickEnterButton()
-                .clickPersonalAreaButtonWhileAlreadyLogin()
-                .isProfileHeaderVisible();
-        assertTrue(isProfileHeaderVisible);
+                .isCheckoutOrderButtonVisible();
+        assertTrue(isCheckoutOrderButtonVisible);
     }
 
     @Test
     public void enterThroughPersonalAreaButton() {
         driver = WebDriverFactory.get("chrome", "main");
         userClient.create(user);
-        boolean isProfileHeaderVisible = new MainPage(driver)
+        boolean isCheckoutOrderButtonVisible = new MainPage(driver)
                 .clickPersonalAreaButtonWhileIsNotLogin()
                 .inputEmail(user.getEmail())
                 .inputPassword(user.getPassword())
                 .clickEnterButton()
-                .clickStellarisBurgerLogo()
-                .clickPersonalAreaButtonWhileAlreadyLogin()
-                .isProfileHeaderVisible();
-        assertTrue(isProfileHeaderVisible);
+                .isCheckoutOrderButtonVisible();
+        assertTrue(isCheckoutOrderButtonVisible);
     }
 
-    //через регистрацию надо отдельно?
+
     @Test
     public void enterThroughToRegistrationButton() {
         driver = WebDriverFactory.get("chrome", "login");
         userClient.create(user);
-        boolean isProfileHeaderVisible = new MainPage(driver)
-                .clickPersonalAreaButtonWhileIsNotLogin()
+        boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
+                .clickToRegistrationButton()
+                .clickEnterButton()
                 .inputEmail(user.getEmail())
                 .inputPassword(user.getPassword())
                 .clickEnterButton()
-                .clickStellarisBurgerLogo()
-                .clickPersonalAreaButtonWhileAlreadyLogin()
-                .isProfileHeaderVisible();
-        assertTrue(isProfileHeaderVisible);
+                .isCheckoutOrderButtonVisible();
+        assertTrue(isCheckoutOrderButtonVisible);
     }
 
 
@@ -91,15 +86,14 @@ public class EnterAccountTest {
     public void enterThroughPasswordRecoverButton() {
         driver = WebDriverFactory.get("chrome", "login");
         userClient.create(user);
-        boolean isProfileHeaderVisible = new MainPage(driver)
-                .clickPersonalAreaButtonWhileIsNotLogin()
+        boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
+                .clickRecoverPasswordButton()
+                .clickEnterButton()
                 .inputEmail(user.getEmail())
                 .inputPassword(user.getPassword())
                 .clickEnterButton()
-                .clickStellarisBurgerLogo()
-                .clickPersonalAreaButtonWhileAlreadyLogin()
-                .isProfileHeaderVisible();
-        assertTrue(isProfileHeaderVisible);
+                .isCheckoutOrderButtonVisible();
+        assertTrue(isCheckoutOrderButtonVisible);
     }
 
 

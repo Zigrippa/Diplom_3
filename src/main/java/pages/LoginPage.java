@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -25,9 +28,7 @@ public class LoginPage {
     private final By toRegistrationButton = By.xpath("/html/body/div/div/main/div/div/p[1]/a");
     private final By recoverPasswordButton = By.xpath("/html/body/div/div/main/div/div/p[2]/a");
 
-
-
-
+    private final By stellarisBurgerLogo = By.xpath("/html/body/div/div/header/nav/div/a");
 
 
     //методы
@@ -44,6 +45,21 @@ public class LoginPage {
 
     public MainPage clickEnterButton() {
         driver.findElement(enterButton).click();
+        return new MainPage(driver);
+    }
+
+    public RegistrationPage clickToRegistrationButton() {
+        driver.findElement(toRegistrationButton).click();
+        return new RegistrationPage(driver);
+    }
+
+    public ForgotPasswordPage clickRecoverPasswordButton() {
+        driver.findElement(recoverPasswordButton).click();
+        return new ForgotPasswordPage(driver);
+    }
+
+    public MainPage clickStellarisBurgerLogo() {
+        driver.findElement(stellarisBurgerLogo).click();
         return new MainPage(driver);
     }
 
