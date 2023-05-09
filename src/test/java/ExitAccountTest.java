@@ -1,6 +1,7 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -8,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
-import pages.MainPage;
 import tools.WebDriverFactory;
 
 import static org.junit.Assert.assertTrue;
@@ -42,6 +42,7 @@ public class ExitAccountTest {
     }
 
     @Test
+    @DisplayName("Проверка выхода из аккаунта в личном кабинете")
     public void exitAccountButton() {
         boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
                 .inputEmail(user.getEmail())
@@ -50,7 +51,7 @@ public class ExitAccountTest {
                 .clickPersonalAreaButtonWhileAlreadyLogin()
                 .clickExitButton()
                 .isLoginHeaderVisible();
-        assertTrue(isCheckoutOrderButtonVisible);
+        assertTrue("Выход из аккаунт не выполнен", isCheckoutOrderButtonVisible);
     }
 
 }

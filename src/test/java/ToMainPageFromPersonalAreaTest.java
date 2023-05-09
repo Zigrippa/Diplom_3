@@ -1,6 +1,7 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -8,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
-import pages.MainPage;
 import tools.WebDriverFactory;
 
 import static org.junit.Assert.assertTrue;
@@ -42,6 +42,7 @@ public class ToMainPageFromPersonalAreaTest {
     }
 
     @Test
+    @DisplayName("Проверка перехода из личного кабинета на главную через кнопку Конструктор")
     public void exitAccountPageThroughConstructorButton() {
         boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
                 .inputEmail(user.getEmail())
@@ -50,10 +51,11 @@ public class ToMainPageFromPersonalAreaTest {
                 .clickPersonalAreaButtonWhileAlreadyLogin()
                 .clickToConstructorButton()
                 .isCheckoutOrderButtonVisible();
-        assertTrue(isCheckoutOrderButtonVisible);
+        assertTrue("Переход через кнопку конструктора не выполнен", isCheckoutOrderButtonVisible);
     }
 
     @Test
+    @DisplayName("Проверка перехода из личного кабинета на главную через лого сайта")
     public void exitAccountPageThroughStellarisLogo() {
         boolean isCheckoutOrderButtonVisible = new LoginPage(driver)
                 .inputEmail(user.getEmail())
@@ -62,7 +64,7 @@ public class ToMainPageFromPersonalAreaTest {
                 .clickPersonalAreaButtonWhileAlreadyLogin()
                 .clickToStellarisBurgerLogo()
                 .isCheckoutOrderButtonVisible();
-        assertTrue(isCheckoutOrderButtonVisible);
+        assertTrue("Переход через лого сайта не выполнен", isCheckoutOrderButtonVisible);
     }
 
 }

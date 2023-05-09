@@ -1,11 +1,14 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import pages.RegistrationPage;
 import tools.WebDriverFactory;
@@ -40,6 +43,7 @@ public class RegistrationTest {
     }
 
     @Test
+    @DisplayName("Проверка регистрации с корректными данными")
     public void correctRegistrationTest() {
         boolean isLoginHeaderVisible = new RegistrationPage(driver)
                 .inputEmail(user.getEmail())
@@ -47,11 +51,12 @@ public class RegistrationTest {
                 .inputPassword(user.getPassword())
                 .clickRegistrationButton()
                 .isLoginHeaderVisible();
-        assertTrue(isLoginHeaderVisible);
+        assertTrue("Регистрация не выполнена", isLoginHeaderVisible);
     }
 
 
     @Test
+    @DisplayName("Проверка регистрации с недостаточно большим паролем")
     public void passwordLessThenSixSymbolsRegistrationTest() {
         user.setPassword("123");
         boolean isPasswordErrorVisible = new RegistrationPage(driver)
@@ -60,7 +65,8 @@ public class RegistrationTest {
                 .inputPassword(user.getPassword())
                 .clickEmailField()
                 .isIncorrectPasswordError();
-        assertTrue(isPasswordErrorVisible);
+        assertTrue("Ошибка о том, что пароль некорректен не появилась" +
+                " и регистрация прошла успешно", isPasswordErrorVisible);
     }
 
 

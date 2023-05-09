@@ -14,23 +14,18 @@ public class MainPage {
         this.driver = driver;
     }
 
-    //локаторы
     private final By enterToAccountButton = By.xpath("/html/body/div/div/main/section[2]/div/button");
     private final By personalAreaButton = By.xpath("/html/body/div/div/header/nav/a");
     private final By checkoutOrderButton = By.xpath("/html/body/div/div/main/section[2]/div/button");
     private final By stellarisBurgerLogo = By.xpath("/html/body/div/div/header/nav/div/a/svg");
-
-
     private final By bunsSelectionButton = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[1]");
     private final By sousesSelectionButton = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[2]");
     private final By fillingsSelectionButton = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[1]/div[3]");
-
     private final By bunsSelection = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[2]/h2[1]");
     private final By sousesSelection = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[2]/h2[2]");
     private final By fillingsSelection = By.xpath("//*[@id=\"root\"]/div/main/section[1]/div[2]/h2[3]");
 
 
-    //методы
     public LoginPage clickToAccountButton() {
         driver.findElement(enterToAccountButton).click();
         return new LoginPage(driver);

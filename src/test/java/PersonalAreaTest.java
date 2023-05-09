@@ -1,6 +1,7 @@
 import api_models.User;
 import api_models.UserClient;
 import config.ApiConfig;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -41,6 +42,7 @@ public class PersonalAreaTest {
     }
 
     @Test
+    @DisplayName("Проверка входа в личный кабинет")
     public void enterThroughPersonalAreaButtonToAccount() {
         boolean isProfileHeaderVisible = new MainPage(driver)
                 .clickToAccountButton()
@@ -49,7 +51,7 @@ public class PersonalAreaTest {
                 .clickEnterButton()
                 .clickPersonalAreaButtonWhileAlreadyLogin()
                 .isProfileHeaderVisible();
-        assertTrue(isProfileHeaderVisible);
+        assertTrue("Вход в личный кабинет не выполнен", isProfileHeaderVisible);
     }
 
 
