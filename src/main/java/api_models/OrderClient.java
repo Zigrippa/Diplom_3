@@ -37,7 +37,7 @@ public class OrderClient {
     }
 
     @Step("Получение конкретного заказа")
-    public ValidatableResponse getUserOrder(User user, String accessToken) { //доработать
+    public ValidatableResponse getUserOrder(User user, String accessToken) {
         return given()
                 .header("Authorization", accessToken)
                 .spec(requestSpec())

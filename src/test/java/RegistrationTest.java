@@ -21,6 +21,8 @@ public class RegistrationTest {
     public User user;
     public String accessToken;
 
+    private static final String INVALID_PASSWORD = "123";
+
 
     @Before
     public void setUp() {
@@ -57,7 +59,7 @@ public class RegistrationTest {
     @Test
     @DisplayName("Проверка регистрации с недостаточно большим паролем")
     public void passwordLessThenSixSymbolsRegistrationTest() {
-        user.setPassword("123");
+        user.setPassword(INVALID_PASSWORD);
         boolean isPasswordErrorVisible = new RegistrationPage(driver)
                 .inputEmail(user.getEmail())
                 .inputName(user.getName())
@@ -67,8 +69,5 @@ public class RegistrationTest {
         assertTrue("Ошибка о том, что пароль некорректен не появилась" +
                 " и регистрация прошла успешно", isPasswordErrorVisible);
     }
-
-
-
 
 }
